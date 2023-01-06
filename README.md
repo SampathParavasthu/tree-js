@@ -1,2 +1,2 @@
 # tree-js
-js library to create family tree
+WIP - js library to create family tree
