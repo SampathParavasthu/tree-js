@@ -1,2 +1,5 @@
-console.log('this is script file');
-console.log('Lets starts building stuffs');
+class Tree {
+ constructor(options){
+   this.options = options;
+ } 
+}
