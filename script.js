@@ -3,5 +3,6 @@ class Tree {
    this.options = options;
  } 
  
- buildTree(){}
+ buildTree(){},
+ pushToTree(){}
 }
