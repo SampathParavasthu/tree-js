@@ -5,7 +5,7 @@ class Tree {
 
  /* This should build the tree */
  buildTree(){
-
+  const rootTree = document.querySelector('#root-tree');
  }
  
  /* This should push a new node to the tree */
