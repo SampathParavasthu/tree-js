@@ -1,21 +1,12 @@
-class Tree {
- constructor(options){
-   this.options = options;
- } 
+import Tree from "./tree.js";
 
- /* This should build the tree */
- buildTree(){
+let options = {
+  id: "#root-tree",
+};
 
- }
- 
- /* This should push a new node to the tree */
- pushToTree(){
+let rootTree = new Tree(options);
 
- }
 
- /* This should delete a tree */
- deleteATree(){
+rootTree.buildTree();
 
- }
-
-}
+console.log(rootTree)
