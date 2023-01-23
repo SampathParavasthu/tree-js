@@ -12,3 +12,5 @@ let data = {
     children: ['component-5']
   }
 }
+
+export default data;

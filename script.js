@@ -1,4 +1,5 @@
 import Tree from "./tree.js";
+import data from './data.js';
 
 let options = {
   id: "#root-tree",
@@ -8,6 +9,6 @@ let options = {
 let rootTree = new Tree(options);
 
 
-rootTree.buildTree();
+rootTree.buildTree(data);
 
 console.log(rootTree)
