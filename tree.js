@@ -9,12 +9,12 @@ function _createUlElement(){
 function _createListElement(text){
   let li = document.createElement('li');
   let code = document.createElement('code');
-  code.appendChild(_createTextNode(text))
+  code.appendChild(_createTextNode(text));
   li.appendChild(code);
   return li;
 }
 
-function _appendLi(ul, li) {
+function _appendChildLi(ul, li) {
   ul.appendChild(li);
   return ul;
 }
@@ -27,7 +27,7 @@ class Tree {
      throw new Error('Need id for the tree root element');
    }
   this.#options = options;
-  } 
+  }
  
   /* This should build the tree */
   buildTree(data){
@@ -40,20 +40,17 @@ class Tree {
 
     let ul = _createUlElement();
     let li = _createListElement('this is text');
-    let b = _appendLi(ul, li);
+    let parentUl = _appendChildLi(ul, li);
 
 
     /* This where the document builder logic goes */
 
-    fragment.appendChild(b);
+    fragment.appendChild(parentUl);
     rootElement.appendChild(fragment);
   }
   
   /* This should delete a tree */
-  deleteATree(){
- 
-  }
- 
+  deleteATree(){}
  }
  
  export default Tree;
