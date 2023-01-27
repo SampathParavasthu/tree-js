@@ -1,5 +1,5 @@
 # tree-js
-🚧 WIP - js library to create family tree. This is a minimal js library to build Trees in UI
+🚧 WIP - This is a minimal js library to build family trees in UI.
 
 
 ```js
