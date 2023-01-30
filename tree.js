@@ -1,36 +1,20 @@
-function _createTextNode(text){
-  return document.createTextNode(text);
-}
-
-function _createUlElement(){
-  return document.createElement('ul');
-}
-
-function _createListElement(text){
-  let li = document.createElement('li');
-  let code = document.createElement('code');
-  code.appendChild(_createTextNode(text));
-  li.appendChild(code);
-  return li;
-}
-
-function _appendChildLi(ul, li) {
-  ul.appendChild(li);
-  return ul;
-}
-
+import {
+  createUlElement,
+  createListElement,
+  appendChildLi,
+} from "./utils";
 
 class Tree {
   #options;
-  constructor(options){
-   if(!options.id){
-     throw new Error('Need id for the tree root element');
-   }
-  this.#options = options;
+  constructor(options) {
+    if (!options.id) {
+      throw new Error("Need id for the tree root element");
+    }
+    this.#options = options;
   }
- 
+
   /* This should build the tree */
-  buildTree(data){
+  buildTree(data) {
     let rootId = this.#options.id;
     let rootElement = document.querySelector(rootId);
 
@@ -38,19 +22,18 @@ class Tree {
 
     /* This where the document builder logic goes */
 
-    let ul = _createUlElement();
-    let li = _createListElement('this is text');
-    let parentUl = _appendChildLi(ul, li);
-
+    let ul = createUlElement();
+    let li = createListElement("this is text");
+    let parentUl = appendChildLi(ul, li);
 
     /* This where the document builder logic goes */
 
     fragment.appendChild(parentUl);
     rootElement.appendChild(fragment);
   }
-  
+
   /* This should delete a tree */
-  deleteATree(){}
- }
- 
- export default Tree;
+  deleteATree() {}
+}
+
+export default Tree;
