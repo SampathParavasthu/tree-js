@@ -4,31 +4,47 @@ import {
   appendChildLi,
 } from "./utils";
 
+
+function _buildTree(data){
+  data.forEach(element => {
+    element.name
+    if(data.children){
+      _buildTree(data.children);
+    }
+  });
+}
+
 class Tree {
   #options;
   constructor(options) {
     if (!options.id) {
-      throw new Error("Need id for the tree root element");
+      throw new Error('Need id for the tree root element');
     }
     this.#options = options;
   }
 
   /* This should build the tree */
   buildTree(data) {
-    let rootId = this.#options.id;
-    let rootElement = document.querySelector(rootId);
 
-    let fragment = document.createDocumentFragment();
+    if(!data || data.length == 0){
+      throw new Error('Please provide data to construct tree');
+    }
 
-    /* This where the document builder logic goes */
-
-    let ul = createUlElement();
-    let li = createListElement("this is text");
-    let parentUl = appendChildLi(ul, li);
+    let rootId = this.#options.id,
+        rootElement = document.querySelector(rootId),
+        fragment = document.createDocumentFragment();
 
     /* This where the document builder logic goes */
 
-    fragment.appendChild(parentUl);
+      _buildTree(data);    
+
+    // let ul = createUlElement();
+    // let li = createListElement("this is text");
+    // let parentUl = appendChildLi(ul, li);
+
+    /* This where the document builder logic goes */
+
+    fragment.appendChild();
     rootElement.appendChild(fragment);
   }
 
