@@ -2,15 +2,18 @@ import {
   createUlElement,
   createListElement,
   appendChildLi,
-} from "./utils";
+} from "./utils.js";
 
 
-function _buildTree(data){
+function _buildTree(data, parentUl){
   data.forEach(element => {
-    element.name
-    if(data.children){
-      _buildTree(data.children);
+    let li = createListElement(element.name)
+    let ulNode = appendChildLi(parentUl, li);
+    if(element.children){
+      let ul = createUlElement();
+      _buildTree(element.children, ul);
     }
+    return ulNode;
   });
 }
 
@@ -30,21 +33,23 @@ class Tree {
       throw new Error('Please provide data to construct tree');
     }
 
-    let rootId = this.#options.id,
-        rootElement = document.querySelector(rootId),
-        fragment = document.createDocumentFragment();
+    let rootId = this.#options.id;
+    let rootElement = document.querySelector(rootId);
+    let fragment = document.createDocumentFragment();
+
+    let ul = createUlElement();
+    ul.classList.add('tree')
 
     /* This where the document builder logic goes */
 
-      _buildTree(data);    
+    let childNodes = _buildTree(data, ul);
 
-    // let ul = createUlElement();
     // let li = createListElement("this is text");
     // let parentUl = appendChildLi(ul, li);
 
     /* This where the document builder logic goes */
 
-    fragment.appendChild();
+    fragment.appendChild(childNodes);
     rootElement.appendChild(fragment);
   }
 
