@@ -7,8 +7,4 @@ let options = {
 };
 
 let rootTree = new Tree(options);
-
-
 rootTree.buildTree(data);
-
-console.log(rootTree)

@@ -43,7 +43,6 @@ class Tree {
     this.#options = options;
   }
 
-  /* This should build the tree */
   buildTree(data) {
 
     if(!data || data.length == 0){
@@ -52,19 +51,11 @@ class Tree {
 
     let rootId = this.#options.id;
     let rootElement = document.querySelector(rootId);
-    
-
     const treeUl = document.createElement("ul");
     treeUl.classList.add("tree");
     treeUl.appendChild(convertToHTML(data));
-
-
-
     rootElement.appendChild(treeUl);
   }
-
-  /* This should delete a tree */
-  deleteATree() {}
 }
 
 export default Tree;
