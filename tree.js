@@ -1,20 +1,37 @@
-import {
-  createUlElement,
-  createListElement,
-  appendChildLi,
-} from "./utils.js";
+function convertToHTML(data) {
+  const treeFragment = document.createDocumentFragment();
 
+  for (let i = 0; i < data.length; i++) {
+    const route = data[i];
+    const routeLi = document.createElement("li");
+    const routeCode = document.createElement("code");
+    routeCode.textContent = route.name;
+    routeLi.appendChild(routeCode);
+    routeLi.appendChild(createTree(route.children));
+    treeFragment.appendChild(routeLi);
+  }
 
-function _buildTree(data, parentUl){
-  data.forEach(element => {
-    let li = createListElement(element.name)
-    let ulNode = appendChildLi(parentUl, li);
-    if(element.children){
-      let ul = createUlElement();
-      _buildTree(element.children, ul);
-    }
-    return ulNode;
-  });
+  return treeFragment;
+}
+
+function createTree(data) {
+  if (!data || !data.length) return document.createDocumentFragment();
+
+  const subTreeFragment = document.createDocumentFragment();
+  const subTreeUl = document.createElement("ul");
+
+  for (let i = 0; i < data.length; i++) {
+    const component = data[i];
+    const componentLi = document.createElement("li");
+    const componentCode = document.createElement("code");
+    componentCode.textContent = component.name;
+    componentLi.appendChild(componentCode);
+    componentLi.appendChild(createTree(component.children));
+    subTreeUl.appendChild(componentLi);
+  }
+
+  subTreeFragment.appendChild(subTreeUl);
+  return subTreeFragment;
 }
 
 class Tree {
@@ -35,22 +52,15 @@ class Tree {
 
     let rootId = this.#options.id;
     let rootElement = document.querySelector(rootId);
-    let fragment = document.createDocumentFragment();
+    
 
-    let ul = createUlElement();
-    ul.classList.add('tree')
+    const treeUl = document.createElement("ul");
+    treeUl.classList.add("tree");
+    treeUl.appendChild(convertToHTML(data));
 
-    /* This where the document builder logic goes */
 
-    let childNodes = _buildTree(data, ul);
 
-    // let li = createListElement("this is text");
-    // let parentUl = appendChildLi(ul, li);
-
-    /* This where the document builder logic goes */
-
-    fragment.appendChild(childNodes);
-    rootElement.appendChild(fragment);
+    rootElement.appendChild(treeUl);
   }
 
   /* This should delete a tree */
