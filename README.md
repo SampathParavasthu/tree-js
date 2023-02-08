@@ -14,3 +14,7 @@ let rootTree = new Tree(options);
 rootTree.buildTree(data);
 
 ```
+
+## TODO
+- [] pass styles
+
